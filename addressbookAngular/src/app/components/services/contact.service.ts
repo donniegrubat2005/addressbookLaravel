@@ -13,7 +13,27 @@ export class ContactService {
   ) {}
 
   public getContacts(): Observable<any[]> {
-    let url = this.httpHelperService.getApiUrl() + '/api/Contact/GetContacts';
+    let url = this.httpHelperService.getApiUrl() + '/api/contacts';
     return this.http.get<any[]>(url);
+  }
+
+  getContact(id: number): Observable<any[]> {
+    let url = this.httpHelperService.getApiUrl() + '/api/contacts';
+    return this.http.get<any[]>(url + '/' + id + '/edit');
+  }
+
+  public save(contact: any) {
+    let url = this.httpHelperService.getApiUrl() + '/api/contacts';
+    return this.http.post<any>(url, contact);
+  }
+
+  update(contact: any): Observable<any> {
+    let url = this.httpHelperService.getApiUrl() + '/api/contacts';
+    return this.http.put<any>(url + '/' + contact.id, contact);
+  }
+
+  delete(id: number): Observable<any> {
+    let url = this.httpHelperService.getApiUrl() + '/api/contacts';
+    return this.http.delete<any>(url + '/' + id);
   }
 }

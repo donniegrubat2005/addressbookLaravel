@@ -6,9 +6,10 @@ import { LoginComponent } from './components/pages/auth/login/login.component';
 import { RegisterComponent } from './components/pages/auth/register/register.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
-import { ContactlistComponent } from './components/pages/contact/contactlist/contactlist.component';
+import { ContactListComponent } from './components/pages/contact/contact-list/contact-list.component';
 import { UserComponent } from './components/pages/user/user.component';
 import { UserlistComponent } from './components/pages/user/userlist/userlist.component';
+import { ContactFormComponent } from './components/pages/contact/contact-form/contact-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -32,7 +33,11 @@ const routes: Routes = [
       {
         path: 'contacts',
         component: ContactComponent,
-        children: [{ path: 'list', component: ContactlistComponent }],
+        children: [
+          { path: 'list', component: ContactListComponent },
+          { path: 'create', component: ContactFormComponent },
+          { path: ':id/edit', component: ContactFormComponent },
+        ],
       },
       {
         path: 'users',
@@ -57,7 +62,8 @@ export const RoutingComponents = [
   RegisterComponent,
   HomeComponent,
   ContactComponent,
-  ContactlistComponent,
+  ContactListComponent,
+  ContactFormComponent,
   UserComponent,
   UserlistComponent,
 ];

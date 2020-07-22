@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contactlist',
-  templateUrl: './contactlist.component.html',
-  styleUrls: ['./contactlist.component.css'],
+  templateUrl: './contact-list.component.html',
+  styleUrls: ['./contact-list.component.css'],
 })
-export class ContactlistComponent implements OnInit {
+export class ContactListComponent implements OnInit {
   //this is for data tables configuration
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
@@ -74,6 +74,13 @@ export class ContactlistComponent implements OnInit {
   }
 
   edit(id: number) {
-    this.router.navigate(['/contacts/' + id + '/edit']);
+    this.router.navigate(['/home/contacts/' + id + '/edit']);
+  }
+
+  remove(contact: any): void {
+    this.contactService.delete(contact.id).subscribe((res) => {
+      this.toastr.warning('Deleted successfully!', 'Deleted!');
+      this.loadContactList();
+    });
   }
 }

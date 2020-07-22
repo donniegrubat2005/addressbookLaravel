@@ -1,5 +1,5 @@
 {
-  "name": "addressbook-angular",
+  "name": "addressbookAngular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
