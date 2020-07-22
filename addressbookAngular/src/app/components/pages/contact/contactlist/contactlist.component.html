@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 col-md-12">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row mb-3">
+            <div class="col-sm-6">
+              <h5 class="float-left">Contact List</h5>
+            </div>
+            <div class="col-sm-6">
+              <a
+                [routerLink]="['/bankaccounts/create']"
+                routerLinkActive="router-link-active"
+                class="btn btn-primary float-left float-sm-right btn-rounded"
+                >Create</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table
+              datatable
+              [dtOptions]="dtOptions"
+              [dtTrigger]="dtTrigger"
+              class="table thead-light table-borderless"
+            >
+              <thead>
+                <tr>
+                  <th scope="col" width="30px">#</th>
+                  <th scope="col">Account Name</th>
+                  <th scope="col">Account Number</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col" width="80px">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let contact of rowData; let i = index"
+                  class="table-light"
+                >
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ contact.firstName }}</td>
+                  <td>{{ contact.lastName }}</td>
+                  <td>{{ contact.gender }}</td>
+                  <td>{{ contact.dateofBirth }}</td>
+
+                  <td>
+                    <span
+                      ><button class="btn btn-secondary">
+                        <i
+                          class="fas fa-pencil-alt ms-text-primary"
+                          (click)="edit(contact.id)"
+                        ></i></button
+                    ></span>
+                    <span
+                      ><button class="btn btn-danger">
+                        <i class="far fa-trash-alt ms-text-danger"></i></button
+                    ></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
