@@ -60,6 +60,30 @@ button[type="submit"]:disabled {
   padding: 3.5rem;
 }
 
+.bg-login-image {
+  background: url("../images/avatar-man.png") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-repeat: repeat-y;
+}
+
+.bg-register-image {
+  background: url("../images/avatar-man.png") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-repeat: repeat-y;
+}
+
+.bg-password-image {
+  background: url("../images/avatar-man.png") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-repeat: repeat-y;
+}
+
 @media (min-width: 992px) {
 }
 @media (min-width: 1200px) {

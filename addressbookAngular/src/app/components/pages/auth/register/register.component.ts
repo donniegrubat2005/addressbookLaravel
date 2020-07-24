@@ -24,19 +24,22 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.userForm = this.fb.group({
       id: [''],
-      UserName: ['', Validators.required],
-      Email: ['', Validators.required],
-      Password: ['', Validators.required],
-      ConfirmPassword: ['', Validators.required],
-      FirstName: ['', Validators.required],
-      LastName: ['', Validators.required],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      password_confirmation: ['', Validators.required],
     });
   }
 
   onSubmit() {
     this.userService.register(this.userForm.value).subscribe(
       (result) => this.returntoLogin(),
-      (error) => console.log(error)
+      (err) => {
+        if (err.status == 422)
+          this.toastr.error('Email address has already been taken.');
+        else console.log(err);
+      }
     );
   }
 

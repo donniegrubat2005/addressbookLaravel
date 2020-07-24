@@ -26,7 +26,7 @@ import { ContactService } from './components/services/contact.service';
       progressBar: true,
       progressAnimation: 'increasing',
       preventDuplicates: true,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-right',
     }), // ToastrModule added
     AppRoutingModule,
   ],

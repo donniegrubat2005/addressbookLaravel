@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
   userForm: FormGroup;
   userId = null;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -22,14 +23,36 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.checkTokenIfExist();
     this.userForm = this.fb.group({
       id: [''],
-      UserName: ['', Validators.required],
-      Email: ['', Validators.required],
-      Password: ['', Validators.required],
-      ConfirmPassword: ['', Validators.required],
-      FirstName: ['', Validators.required],
-      LastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
+  }
+
+  get f() {
+    return this.userForm.controls;
+  }
+
+  Login() {
+    this.userService.login(this.userForm.value).subscribe(
+      (res: any) => {
+        localStorage.setItem('token', res.token);
+        this.router.navigateByUrl('/home');
+      },
+      (err) => {
+        if (err.status == 401)
+          this.toastr.error(
+            'Incorrect username or password.',
+            'Authentication failed.'
+          );
+        else console.log(err);
+      }
+    );
+  }
+
+  checkTokenIfExist() {
+    if (localStorage.getItem('token') != null) this.router.navigate(['/home']);
   }
 }

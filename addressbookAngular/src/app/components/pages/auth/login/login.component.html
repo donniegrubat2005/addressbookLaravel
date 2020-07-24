@@ -12,14 +12,18 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
-                <form class="user">
+                <form class="user" [formGroup]="userForm" (ngSubmit)="Login()">
                   <div class="form-group">
                     <input
                       type="email"
                       class="form-control form-control-user"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.firstName.errors
+                      }"
                       id="inputEmail"
                       aria-describedby="emailHelp"
                       placeholder="Email Address..."
+                      formControlName="email"
                     />
                   </div>
                   <div class="form-group">
@@ -28,27 +32,16 @@
                       class="form-control form-control-user"
                       id="inputPassword"
                       placeholder="Password"
+                      formControlName="password"
                     />
                   </div>
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox small">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="customCheck"
-                      />
-                      <label class="custom-control-label" for="customCheck"
-                        >Remember Me</label
-                      >
-                    </div>
-                  </div>
-                  <a
-                    [routerLink]="['/home']"
-                    routerLinkActive="router-link-active"
+                  <button
+                    type="submit"
+                    [disabled]="!userForm.valid"
                     class="btn btn-primary btn-user btn-block"
                   >
                     Login
-                  </a>
+                  </button>
                 </form>
                 <hr />
                 <div class="text-center">

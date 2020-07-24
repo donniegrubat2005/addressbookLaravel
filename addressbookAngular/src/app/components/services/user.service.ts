@@ -12,7 +12,12 @@ export class UserService {
   ) {}
 
   public register(user: any) {
-    let url = this.httpHelperService.getApiUrl() + '/api/Auth/Register';
+    let url = this.httpHelperService.getApiUrl() + '/api/auth/register';
+    return this.http.post<any>(url, user);
+  }
+
+  public login(user: any) {
+    let url = this.httpHelperService.getApiUrl() + '/api/auth/login';
     return this.http.post<any>(url, user);
   }
 }

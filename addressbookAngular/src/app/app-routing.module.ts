@@ -10,6 +10,7 @@ import { ContactListComponent } from './components/pages/contact/contact-list/co
 import { UserComponent } from './components/pages/user/user.component';
 import { UserlistComponent } from './components/pages/user/userlist/userlist.component';
 import { ContactFormComponent } from './components/pages/contact/contact-form/contact-form.component';
+import { AuthGuard } from './components/auth/auth-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [AuthGuard],
     component: HomeComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
